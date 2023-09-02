@@ -22,7 +22,7 @@ const App = () => {
     <div>
         <h1>Data Fetched from API</h1>
         {loading && <p>Loading...</p>}
-        {error && <p>An error occured: {error.message}</p>}
+        {error && <p>An error occured: </p>}
         {
           !error && data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>No data found</p>
         }
