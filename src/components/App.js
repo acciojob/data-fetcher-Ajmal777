@@ -7,25 +7,30 @@ const App = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-      axios.get('https://dummyjson.com/products')
+      axios.get('https://dummyjson.com/product')
       .then(res => {
         setData(res.data)
         setLoading(false);
       })
       .catch(error => {
-        setError(error.data)
+        setError(true)
         setLoading(false);
+        console.log(error);
       });
   }, []);
 
   return (
     <div>
-        <h1>Data Fetched from API</h1>
-        {loading && <p>Loading...</p>}
-        {error && <p>An error occured: </p>}
-        {
-          !error && data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>No data found</p>
-        }
+      {error && <p>An error occured: </p>}
+      {!error &&
+        <div>
+          <h1>Data Fetched from API</h1>
+          {loading && <p>Loading...</p>}
+          {
+            data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>No data found</p>
+          }
+        </div>
+      }
     </div>
   )
 }
